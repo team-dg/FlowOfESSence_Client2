@@ -7,13 +7,15 @@ public class LoginManager : MonoBehaviour
 
     public GameObject loginBtn1;
     public GameObject loginBtn2;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    public GameObject loginPanel;
+    public GameObject lobbyPanel;
+
     void Start()
     {
         Screen.SetResolution(1366, 768, false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -31,5 +33,16 @@ public class LoginManager : MonoBehaviour
             loginBtn1.SetActive(true);
             loginBtn2.SetActive(false);
         }
+    }
+    public void Login()
+    {
+        //만약 로그인에 성공한다면
+        loginPanel.SetActive(false);
+        lobbyPanel.SetActive(true);
+
+    }
+    public void OpenLoginPage(string url)
+    {
+        Application.OpenURL(url);
     }
 }
