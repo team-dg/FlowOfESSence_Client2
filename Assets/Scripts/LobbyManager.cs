@@ -10,6 +10,9 @@ public class LobbyManager : MonoBehaviour
     public GameObject[] GameModePanel;
 
     public InputField[] inputFields;
+    public GameObject 模备眠啊Panel;
+    public InputField 模备眠啊Input;
+
 
     void Start()
     {
@@ -50,8 +53,30 @@ public class LobbyManager : MonoBehaviour
         }
     }
 
-    public void ClickGameMode()
+    public void ClickGameMode(int num)
     {
-
+        for (int i = 0; i < 3; i++)
+        {
+            if (i == num)
+            {
+                GameModePanel[i].SetActive(true);
+            }
+            else
+            {
+                GameModePanel[i].SetActive(false);
+            }
+        }
+    }
+    public void Open模备眠啊Panel(int num)
+    {
+        if(num==0)
+        {
+            模备眠啊Panel.SetActive(true);
+        }
+        else
+        {
+            模备眠啊Panel.SetActive(false);
+            模备眠啊Input.text = "";
+        }
     }
 }
