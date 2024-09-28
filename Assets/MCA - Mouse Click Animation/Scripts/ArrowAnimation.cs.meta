@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 49c1c427d733ad24eb627d177aa639ee
+timeCreated: 1521299991
+licenseType: Store
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 121860
+  packageName: MCA - Mouse Click Animation
+  packageVersion: 1.0
+  assetPath: Assets/MCA - Mouse Click Animation/Scripts/ArrowAnimation.cs
+  uploadId: 256356

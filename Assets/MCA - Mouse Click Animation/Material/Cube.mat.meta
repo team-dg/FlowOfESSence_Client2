@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: c52772dfc87954a478b0360a081f45d4
+timeCreated: 1521314623
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 121860
+  packageName: MCA - Mouse Click Animation
+  packageVersion: 1.0
+  assetPath: Assets/MCA - Mouse Click Animation/Material/Cube.mat
+  uploadId: 256356

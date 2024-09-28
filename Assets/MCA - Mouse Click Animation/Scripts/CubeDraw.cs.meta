@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 89b6d6cc4e674bc4ca64e28fbe61ab9a
+timeCreated: 1521461592
+licenseType: Store
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 121860
+  packageName: MCA - Mouse Click Animation
+  packageVersion: 1.0
+  assetPath: Assets/MCA - Mouse Click Animation/Scripts/CubeDraw.cs
+  uploadId: 256356

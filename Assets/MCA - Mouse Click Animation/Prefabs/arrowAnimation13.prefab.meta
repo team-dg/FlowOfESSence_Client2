@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 7f284f2150765e74f94639cb58782941
+timeCreated: 1530272381
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 121860
+  packageName: MCA - Mouse Click Animation
+  packageVersion: 1.0
+  assetPath: Assets/MCA - Mouse Click Animation/Prefabs/arrowAnimation13.prefab
+  uploadId: 256356
