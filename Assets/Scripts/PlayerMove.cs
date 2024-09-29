@@ -14,10 +14,13 @@ public class PlayerMove : MonoBehaviour
     public GameObject HPbar;
     public int 일반공격범위;
 
+    Abilities abilities;
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        abilities= GetComponent<Abilities>();
         agent.updateRotation = false;//Nav로 로테이션이 변경되는 것을 방지
         agent.acceleration = float.MaxValue;//가속도를 최대로 해서 더 부드럽게
     }
@@ -67,32 +70,43 @@ public class PlayerMove : MonoBehaviour
                     animator.SetBool("IsMove", false);
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q)&& !abilities.GetskillCooltime(0))
             {
                 isMove = false;
-                isSkill = true;
                 agent.ResetPath();//이동을 취소
                 animator.SetTrigger("IsSkill1");
                 animator.SetBool("IsMove", false);
-               
+                isSkill = true;
+                abilities.스킬사용(0);
             }
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.W) && !abilities.GetskillCooltime(1))
             {
                 isMove = false;
-                isSkill = true;
                 agent.ResetPath();//이동을 취소
                 animator.SetTrigger("IsSkill2");
                 animator.SetBool("IsMove", false);
-                
+                isSkill = true;
+                abilities.스킬사용(1);
             }
-            if (Input.GetKeyDown(KeyCode.R))
+
+            if (Input.GetKeyDown(KeyCode.E) && !abilities.GetskillCooltime(2))
             {
                 isMove = false;
+                agent.ResetPath();//이동을 취소
+                animator.SetTrigger("IsSkill2");
+                animator.SetBool("IsMove", false);
                 isSkill = true;
+                abilities.스킬사용(2);
+            }
+
+            if (Input.GetKeyDown(KeyCode.R) && !abilities.GetskillCooltime(3))
+            {
+                isMove = false;
                 agent.ResetPath();//이동을 취소
                 animator.SetTrigger("IsSkill4");
                 animator.SetBool("IsMove", false);
-                
+                isSkill = true;
+                abilities.스킬사용(3);
             }
             if (Input.GetKeyDown(KeyCode.O))
             {
@@ -208,5 +222,10 @@ public class PlayerMove : MonoBehaviour
     public void AnimationAttackEnd()
     {
         animator.SetInteger("IsAttack", 0);
+    }
+
+    public bool GetisSkill()
+    {
+        return isSkill;
     }
 }

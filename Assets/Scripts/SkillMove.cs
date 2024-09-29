@@ -6,6 +6,6 @@ public class SkillMove : MonoBehaviour
     void Update()
     {
         // 오브젝트를 앞으로 이동시킴 (프레임마다 실행)
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        transform.Translate(Vector3.down * speed * Time.deltaTime);
     }
-}
+} 
