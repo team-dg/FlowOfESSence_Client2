@@ -93,7 +93,7 @@ public class PlayerMove : MonoBehaviour
             {
                 isMove = false;
                 agent.ResetPath();//이동을 취소
-                animator.SetTrigger("IsSkill2");
+                animator.SetTrigger("IsSkill3");
                 animator.SetBool("IsMove", false);
                 isSkill = true;
                 abilities.스킬사용(2);
@@ -227,5 +227,9 @@ public class PlayerMove : MonoBehaviour
     public bool GetisSkill()
     {
         return isSkill;
+    }
+    public void 귀환()
+    {
+        gameObject.transform.position = new Vector3(-4.1f, 2.46f, 107.78f);
     }
 }

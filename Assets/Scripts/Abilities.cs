@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.UI;
 public class Abilities : MonoBehaviour
 {
@@ -54,11 +55,9 @@ public class Abilities : MonoBehaviour
                 isCooltime[0] = false;
             }
         }
-       
     }
     void Skill2()
     {
-        
         if (isCooltime[1])
         {
             skillImage[1].fillAmount -= 1 / skillCooltime2 * Time.deltaTime;
@@ -84,7 +83,6 @@ public class Abilities : MonoBehaviour
 
     void Skill4()
     {
-        
         if (isCooltime[3])
         {
             skillImage[3].fillAmount -= 1 / skillCooltime4 * Time.deltaTime;
@@ -127,6 +125,35 @@ public class Abilities : MonoBehaviour
             skillImage[i].fillAmount = 1;
             InstantiateSkill좌표();
         }
+    }
+
+    public void 비전이동() // E스킬 사용 시 조금 앞으로 부드럽게 이동
+    {
+        float forwardDistance = 3f;  // 이동할 거리
+        float duration = 0.05f;  // 이동할 시간 (0.05초 동안 이동)
+        StartCoroutine(SmoothMove(transform.position, transform.position + transform.forward * forwardDistance, duration));
+    }
+
+    // 코루틴: 시간이 지남에 따라 부드럽게 이동
+    private IEnumerator SmoothMove(Vector3 startPosition, Vector3 targetPosition, float duration)
+    { 
+        float elapsedTime = 0f;
+
+        // duration 동안 점진적으로 이동
+        while (elapsedTime < duration)
+        {
+            // 현재 시간을 기준으로 보간
+            transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / duration);
+
+            // 경과 시간 증가
+            elapsedTime += Time.deltaTime;
+
+            // 다음 프레임까지 대기
+            yield return null;
+        }
+
+        // 마지막 위치 설정 (정확히 목표 위치에 도달하도록)
+        transform.position = targetPosition;
     }
 
     public bool GetskillCooltime(int i)
