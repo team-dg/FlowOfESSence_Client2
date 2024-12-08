@@ -14,6 +14,8 @@ public class SkillQ : SkillMove
     {
         if (collision != null && collision.gameObject.tag == "Enemy")
         {
+            MInionHP minionHPscript = collision.gameObject.GetComponentInChildren<MInionHP>();
+            minionHPscript.GetDamage(10);
             Destroy(gameObject);
         }
     }

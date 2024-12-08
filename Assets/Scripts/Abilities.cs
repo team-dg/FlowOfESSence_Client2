@@ -22,8 +22,11 @@ public class Abilities : MonoBehaviour
     public float skillCooltime4 = 5f;
     public GameObject R;
 
+    [Header("스킬F")]
+    public float skillCooltimeF = 5f;
+
     public Image[] skillImage; 
-    private bool[] isCooltime = new bool[4];
+    private bool[] isCooltime = new bool[6];
 
     PlayerMove PlayerMove;
     
@@ -43,6 +46,7 @@ public class Abilities : MonoBehaviour
         Skill2();
         Skill3();
         Skill4();
+        SkillF();
     }
     void Skill1()
     {
@@ -93,9 +97,22 @@ public class Abilities : MonoBehaviour
             }
         }
     }
+    void SkillF()
+    {
+        if (isCooltime[5])
+        {
+            skillImage[5].fillAmount -= 1 / skillCooltime4 * Time.deltaTime;
+            if (skillImage[5].fillAmount <= 0)
+            {
+                skillImage[5].fillAmount = 0;
+                isCooltime[5] = false;
+            }
+        }
+    }
 
     Quaternion skillRotation;//스킬을 눌렀을 때 좌표를 저장하고 애니메이션 중간에 생성
-    void InstantiateSkill좌표()
+    Vector3 tempSkillPosition;
+    void InstantiateSkill좌표(int i)
     {
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit))
@@ -108,13 +125,18 @@ public class Abilities : MonoBehaviour
 
             // 캐릭터가 마우스 방향을 바라보도록 회전
             transform.forward = direction;
-            skillRotation = Quaternion.Euler(90, transform.rotation.eulerAngles.y, 180);
+            if(i!=5)
+            {
+                tempSkillPosition = Skillposition.transform.position;
+                skillRotation = Quaternion.Euler(90, transform.rotation.eulerAngles.y, 180);
+            }
+            
         }
     }
 
     void InstantiateSkill(GameObject Y)
     {
-        Instantiate(Y, Skillposition.transform.position, skillRotation);
+        Instantiate(Y, tempSkillPosition, skillRotation);
     }
 
     public void 스킬사용(int i)
@@ -123,16 +145,21 @@ public class Abilities : MonoBehaviour
         {
             isCooltime[i] = true;
             skillImage[i].fillAmount = 1;
-            InstantiateSkill좌표();
+            InstantiateSkill좌표(i);
+        }
+
+        if(i==5)
+        {
+            StartCoroutine(SmoothMove(transform.position, transform.position + transform.forward * 3.5f, 0.001f));
         }
     }
 
     public void 비전이동() // E스킬 사용 시 조금 앞으로 부드럽게 이동
     {
-        float forwardDistance = 3f;  // 이동할 거리
-        float duration = 0.05f;  // 이동할 시간 (0.05초 동안 이동)
+        float forwardDistance = 3.5f;  // 이동할 거리
+        float duration = 0.01f;  // 이동할 시간 (0.05초 동안 이동)
         StartCoroutine(SmoothMove(transform.position, transform.position + transform.forward * forwardDistance, duration));
-    }
+    } 
 
     // 코루틴: 시간이 지남에 따라 부드럽게 이동
     private IEnumerator SmoothMove(Vector3 startPosition, Vector3 targetPosition, float duration)

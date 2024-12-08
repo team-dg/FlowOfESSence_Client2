@@ -28,6 +28,13 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F) && !abilities.GetskillCooltime(5))
+        {
+            isMove = false;
+            agent.ResetPath();//이동을 취소
+            animator.SetBool("IsMove", false);
+            abilities.스킬사용(5);
+        }
         if (isSkill==false)
         {
             if (Input.GetKey(KeyCode.RightControl) && Input.GetKeyDown(KeyCode.Alpha1))
@@ -108,13 +115,14 @@ public class PlayerMove : MonoBehaviour
                 isSkill = true;
                 abilities.스킬사용(3);
             }
+            
             if (Input.GetKeyDown(KeyCode.O))
             {
                 isMove = false;
                 agent.ResetPath();//이동을 취소
                 animator.SetInteger("IsAttack", 1);
             }
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(1)|| Input.GetKeyDown(KeyCode.X))
             {
                 animator.SetInteger("IsAttack", 0);
                 animator.SetInteger("IsCtrl", 0);
